@@ -8,9 +8,12 @@
 </head>
 <body>
 <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+    <video id="petuhan" autoplay loop="true" src="petuhangel.mp4"></video>
+  </a-assets>
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
     <a-entity mindar-image-target="targetIndex: 0">
-        <a-video src="petuhangel.mp4" autoplay loop="true"></a-video>
+        <a-video autoplay src="#penguin-sledding" width="9" height="9" position="0 0 -20"></a-video>
     </a-entity>
 </a-scene>
 </body>
