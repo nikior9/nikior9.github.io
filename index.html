@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
@@ -9,11 +10,11 @@
 <body>
 <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
     <a-assets>
-    <video id="petuhan" autoplay loop="true" src="petuhangel.mp4"></video>
+    <video id="vid" src="petuhangel.mp4"></video>
   </a-assets>
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
     <a-entity mindar-image-target="targetIndex: 0">
-        <a-video src="#petuhan"></a-video>
+        <a-video src="#vid"></a-video>
     </a-entity>
 </a-scene>
 </body>
