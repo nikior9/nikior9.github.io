@@ -1,0 +1,52 @@
+
+body {
+    background-color: #c6d7de;
+    font-family: 'arial';
+    padding: 3em;
+
+}
+
+#v0{
+position: fixed;
+top: 0;
+height: 100%;
+}
+
+#set-height {
+    display: block;
+    height: 300px;
+    text-align: center;
+}
+
+section {
+    z-index: 1;
+    position: relative;
+}
+
+.content {
+    position: sticky;
+    position: -webkit-sticky;
+    width: 100%;
+    top:90%;
+}
+
+h1 {
+    font-size: 3em;
+    background: #fff;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 100px;
+    margin: 0;
+    opacity: 0.7;
+}
+p { font-size: 1.5em; }
+
+section:nth-of-type(1) {
+    height: 3000px;
+}
+
+
+.entered {
+    -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
