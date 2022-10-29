@@ -1,72 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
 </head>
 <body>
-<style>
-    .content {
-        text-align: center;
-
-    }
-</style>
-<style>
-    .vid {
-        display: flex;
-        justify-content: center;
-    }
-</style>
-<section class="container">
-    <div class="content">
-        <h1>Листай вниз</h1>
-</section>
-
-<div id="set-height"></div>
-
-
-<video id="v0" tabindex="0", autobuffer preload;>
-    <source type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' src="test.mp4"></source>
-</video>
-
-<script src="sticky.js"></script>
-
-<script>
-
-    enterView({
-        selector: 'section',
-        enter: function(el) {
-            el.classList.add('entered');
-        }
-    })
-
-    var frameNumber = 0, // start video at frame 0
-        // lower numbers = faster playback
-        playbackConst = 1200,
-        // get page height from video duration
-        setHeight = document.getElementById("set-height"),
-        // select video element
-        vid = document.getElementById('v0');
-    // var vid = $('#v0')[0]; // jquery option
-
-    // dynamically set the page height according to video length
-    vid.addEventListener('loadedmetadata', function() {
-        setHeight.style.height = Math.floor(vid.duration) * playbackConst + "px";
-    });
-
-
-    // Use requestAnimationFrame for smooth playback
-    function scrollPlay(){
-        var frameNumber  = window.pageYOffset/playbackConst;
-        vid.currentTime  = frameNumber;
-        window.requestAnimationFrame(scrollPlay);
-    }
-
-    window.requestAnimationFrame(scrollPlay);
-
-</script>
+<a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+        <a-video src="petuhangel.mp4"></a-video>
+    </a-entity>
+</a-scene>
 </body>
 </html>
