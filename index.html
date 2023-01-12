@@ -24,6 +24,7 @@
     // Get a reference to the container and the image
     const container = document.getElementById("container");
     const image = document.getElementById("image");
+    let fallCounter = 0;
 
     // Function to randomly position an image within the container
     function randomPosition(img) {
@@ -59,8 +60,11 @@
           requestAnimationFrame(() => animateFalling(img));
         }
         else {
-            img.style.top = '-100px';
-            requestAnimationFrame(() => animateFalling(img));
+            fallCounter++;
+            if (fallCounter < 20) {
+                img.style.top = '-100px';
+                requestAnimationFrame(() => animateFalling(img));
+            }
         }
     }
 
