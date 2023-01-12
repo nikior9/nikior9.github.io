@@ -8,40 +8,49 @@
         height: 100%;
       }
 
-      .falling-image {
+      #image {
         position: absolute;
-        top: -50px; /* Start off-screen */
-        left: -50px; /* Start off-screen */
-        width: 100px; /* width of images */
-        height: 100px; /* height of images */
+        width: 100px; /* width of image */
+        height: 100px; /* height of image */
       }
     </style>
   </head>
   <body>
     <div id="container">
-      <img src="image1.jpg" class="falling-image">
-      <img src="image2.jpg" class="falling-image">
-      <img src="image3.jpg" class="falling-image">
-      <!-- additional images -->
+      <img id="image" src="image.jpg">
     </div>
 
     <script>
-      // Get a reference to the container and the images
-      const container = document.getElementById("container");
-      const images = document.querySelectorAll(".falling-image");
+    // Get a reference to the container and the image
+    const container = document.getElementById("container");
+    const image = document.getElementById("image");
 
-      // Function to randomly position an image within the container
-      function randomPosition(img) {
-        const x = Math.floor(Math.random() * container.clientWidth);
-        const y = Math.floor(Math.random() * container.clientHeight);
-        img.style.left = `${x}px`;
-        img.style.top = `${y}px`;
-      }
+    // Function to randomly position an image within the container
+    function randomPosition(img) {
+      const x = Math.floor(Math.random() * container.clientWidth);
+      const y = Math.floor(Math.random() * container.clientHeight);
+      img.style.left = `${x}px`;
+      img.style.top = `${y}px`;
+    }
 
-      // Function to animate an image falling down the screen
-      function animateFalling(img) {
+    // Function to animate an image falling down the screen
+    function animateFalling(img) {
         // Get the current position of the image
-        const currentY = parseInt(img.style.top);
+        let currentY = parseInt(img.style.top);
+        let currentX = parseInt(img.style.left);
+
+        // Create a new img element and set its position to be behind the current one
+        var trailingImg = document.createElement("img");
+        trailingImg.src = img.src;
+        trailingImg.style.width = "100px";
+        trailingImg.style.height = "100px";
+        trailingImg.style.position = "absolute";
+        trailingImg.style.left = `${currentX}px`;
+        trailingImg.style.top = `${currentY}px`;
+        trailingImg.style.opacity = "0.5";
+
+        // Append the new img to the container
+        container.appendChild(trailingImg);
 
         // Set the image's new position to be below the current position
         img.style.top = `${currentY + 10}px`; // 10px per frame
@@ -51,20 +60,14 @@
           // If not, request another animation frame
           requestAnimationFrame(() => animateFalling(img));
         }
-      }
+    }
 
-      // Set up an interval to randomly select and position an image
-      setInterval(() => {
-        // Pick a random image
-        const randomIndex = Math.floor(Math.random() * images.length);
-        const randomImage = images[randomIndex];
+    // Position the image
+    randomPosition(image);
 
-        // Position the image
-        randomPosition(randomImage);
+    // Animate the image falling down
+    animateFalling(image);
 
-        // Animate the image falling down
-        animateFalling(randomImage);
-      }, 1000); // 1 second
     </script>
   </body>
 </html>
