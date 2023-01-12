@@ -17,14 +17,13 @@
   </head>
   <body>
     <div id="container">
-      <img id="image" src="image1.jpg">
+      <img id="image" src="image.jpg">
     </div>
 
     <script>
     // Get a reference to the container and the image
     const container = document.getElementById("container");
     const image = document.getElementById("image");
-    let fallCounter = 0;
 
     // Function to randomly position an image within the container
     function randomPosition(img) {
@@ -32,7 +31,7 @@
       img.style.left = `${x}px`;
     }
 
-    // Function to animate an image falling down the screen
+    // Function to animate an image moving down the screen
     function animateFalling(img) {
         // Get the current position of the image
         let currentY = parseInt(img.style.top);
@@ -51,21 +50,11 @@
         // Append the new img to the container
         container.appendChild(trailingImg);
 
-        // Set the image's new position to be below the current position
+        // Set the image's new position to be down from the current position
         img.style.top = `${currentY + 10}px`; // 10px per frame
 
-        // Check if the image has reached the bottom of the screen
-        if (currentY < container.clientHeight) {
-          // If not, request another animation frame
-          requestAnimationFrame(() => animateFalling(img));
-        }
-        else {
-            fallCounter++;
-            if (fallCounter < 20) {
-                img.style.top = '-100px';
-                requestAnimationFrame(() => animateFalling(img));
-            }
-        }
+        requestAnimationFrame(() => animateFalling(img));
+
     }
 
     // Position the image
