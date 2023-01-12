@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .falling-image {
+        position: absolute;
+        top: -50px; /* Start off-screen */
+        left: -50px; /* Start off-screen */
+        width: 100px; /* width of images */
+        height: 100px; /* height of images */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <img src="image1.jpg" class="falling-image">
+      <img src="image2.jpg" class="falling-image">
+      <img src="image3.jpg" class="falling-image">
+      <!-- additional images -->
+    </div>
+
+    <script>
+      // Get a reference to the container and the images
+      const container = document.getElementById("container");
+      const images = document.querySelectorAll(".falling-image");
+
+      // Function to randomly position an image within the container
+      function randomPosition(img) {
+        const x = Math.floor(Math.random() * container.clientWidth);
+        const y = Math.floor(Math.random() * container.clientHeight);
+        img.style.left = `${x}px`;
+        img.style.top = `${y}px`;
+      }
+
+      // Function to animate an image falling down the screen
+      function animateFalling(img) {
+        // Get the current position of the image
+        const currentY = parseInt(img.style.top);
+
+        // Set the image's new position to be below the current position
+        img.style.top = `${currentY + 10}px`; // 10px per frame
+
+        // Check if the image has reached the bottom of the screen
+        if (currentY < container.clientHeight) {
+          // If not, request another animation frame
+          requestAnimationFrame(() => animateFalling(img));
+        }
+      }
+
+      // Set up an interval to randomly select and position an image
+      setInterval(() => {
+        // Pick a random image
+        const randomIndex = Math.floor(Math.random() * images.length);
+        const randomImage = images[randomIndex];
+
+        // Position the image
+        randomPosition(randomImage);
+
+        // Animate the image falling down
+        animateFalling(randomImage);
+      }, 1000); // 1 second
+    </script>
+  </body>
+</html>
