@@ -39,7 +39,6 @@ function createImage() {
 				duplicate.style.top = img.style.top;
 				duplicate.style.opacity = 0.5;
 				duplicate.addEventListener('click', () => window.open(link));
-				duplicate.style.zIndex = -1;
 				document.body.appendChild(duplicate);
 			}
 		}
