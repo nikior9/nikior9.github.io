@@ -34,7 +34,6 @@ function createImage() {
 				const duplicate = img.cloneNode();
 				duplicate.style.opacity = 0.5;
 				duplicate.addEventListener('click', () => window.open(link));
-				duplicate.style.zIndex = -1;
 				document.body.appendChild(duplicate);
 			}
 		}
