@@ -1,7 +1,7 @@
 const IMAGE_TABLE_FILE = 'image_table.txt';
-const IMAGE_SIZE = 150;
+const IMAGE_SIZE = 100;
 const IMAGE_INTERVAL = 1000;
-const IMAGE_SPEED = 20;
+const IMAGE_SPEED = 10;
 const imageTable = [];
 fetch(IMAGE_TABLE_FILE)
 	.then(response => response.text())
@@ -31,9 +31,15 @@ function createImage() {
 				clearInterval(animationId);
 				document.body.removeChild(img);
 			} else if (parseFloat(img.style.top) % 10 === 0) {
-				const duplicate = img.cloneNode();
+				const duplicate = document.createElement('img');
+				duplicate.src = img.src;
+				duplicate.width = IMAGE_SIZE;
+				duplicate.height = IMAGE_SIZE;
+				duplicate.style.left = img.style.left;
+				duplicate.style.top = img.style.top;
 				duplicate.style.opacity = 0.5;
 				duplicate.addEventListener('click', () => window.open(link));
+				duplicate.style.zIndex = -1;
 				document.body.appendChild(duplicate);
 			}
 		}
