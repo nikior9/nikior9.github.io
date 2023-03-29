@@ -1,6 +1,6 @@
 const IMAGE_TABLE_FILE = 'image_table.txt';
-const IMAGE_SIZE = 100;
-const IMAGE_INTERVAL = 1000;
+const IMAGE_SIZE = 200;
+const IMAGE_INTERVAL = 5000;
 const IMAGE_SPEED = 10;
 const imageTable = [];
 fetch(IMAGE_TABLE_FILE)
