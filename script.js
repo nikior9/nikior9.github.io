@@ -1,6 +1,7 @@
 const imgSize = 100; // in pixels
 const delay = 1000; // in milliseconds
-const speed = 20; // in pixels per second
+const speed = 10; // in pixels per second
+const duplicateTimeout = 2 * 60 * 1000; // in milliseconds
 
 fetch('images_table.txt')
   .then(response => response.text())
@@ -12,11 +13,8 @@ fetch('images_table.txt')
     });
 
     let i = 0;
+    const duplicates = [];
     function addImage() {
-      if (i >= data.length) {
-        return;
-      }
-
       const { imageUrl, link } = data[i];
       const img = document.createElement('img');
       img.src = imageUrl;
@@ -32,8 +30,12 @@ fetch('images_table.txt')
       });
 
       let y = 0;
-      setInterval(() => {
+      const intervalId = setInterval(() => {
         y += speed * delay / 1000;
+        if (parseFloat(img.style.top) + y + imgSize >= window.innerHeight) {
+          clearInterval(intervalId);
+          return;
+        }
         const duplicate = document.createElement('img');
         duplicate.src = imageUrl;
         duplicate.style.position = 'absolute';
@@ -45,12 +47,19 @@ fetch('images_table.txt')
           window.open(link);
         });
         document.body.appendChild(duplicate);
-        if (y >= window.innerHeight) {
-          img.remove();
-        }
+        duplicates.push(duplicate);
       }, delay);
 
-      i++;
+      setTimeout(() => {
+        img.remove();
+        duplicates.forEach(duplicate => duplicate.remove());
+        const index = duplicates.indexOf(img);
+        if (index >= 0) {
+          duplicates.splice(index, 1);
+        }
+      }, duplicateTimeout);
+
+      i = (i + 1) % data.length;
       setTimeout(addImage, delay);
     }
 
