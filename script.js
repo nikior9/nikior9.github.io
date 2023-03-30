@@ -2,7 +2,7 @@ const imgSize = 100; // in pixels
 const delay = 1000; // in milliseconds
 const speed = 20; // in pixels per second
 
-fetch('image_table.txt')
+fetch('images_table.txt')
   .then(response => response.text())
   .then(text => {
     const entries = text.trim().split('\n');
