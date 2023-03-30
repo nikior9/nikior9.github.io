@@ -1,60 +1,58 @@
-// Load the image/link pairs from a text file
-const imageLinks = [];
-fetch('image_table.txt')
+const imgSize = 100; // in pixels
+const delay = 1000; // in milliseconds
+const speed = 10; // in pixels per second
+
+fetch('images_table.txt')
   .then(response => response.text())
   .then(text => {
-    const lines = text.split('\n');
-    for (const line of lines) {
-      const [imageUrl, link] = line.split('::');
-      imageLinks.push({ imageUrl, link });
+    const entries = text.trim().split('\n');
+    const data = entries.map(entry => {
+      const [imageUrl, link] = entry.split('::');
+      return { imageUrl, link };
+    });
+
+    let i = 0;
+    function addImage() {
+      if (i >= data.length) {
+        return;
+      }
+
+      const { imageUrl, link } = data[i];
+      const img = document.createElement('img');
+      img.src = imageUrl;
+      img.style.position = 'absolute';
+      img.style.width = `${imgSize}px`;
+      img.style.height = `${imgSize}px`;
+      img.style.left = `${Math.random() * 100}%`;
+      img.style.top = `${Math.random() * 100}%`;
+      document.body.appendChild(img);
+
+      img.addEventListener('click', () => {
+        window.open(link);
+      });
+
+      let y = 0;
+      setInterval(() => {
+        y += speed * delay / 1000;
+        const duplicate = document.createElement('img');
+        duplicate.src = imageUrl;
+        duplicate.style.position = 'absolute';
+        duplicate.style.width = `${imgSize}px`;
+        duplicate.style.height = `${imgSize}px`;
+        duplicate.style.left = img.style.left;
+        duplicate.style.top = `${parseFloat(img.style.top) + y}px`;
+        duplicate.addEventListener('click', () => {
+          window.open(link);
+        });
+        document.body.appendChild(duplicate);
+        if (y >= window.innerHeight) {
+          img.remove();
+        }
+      }, delay);
+
+      i++;
+      setTimeout(addImage, delay);
     }
+
+    addImage();
   });
-
-// Create a function to generate a random position for an image
-function getRandomPosition() {
-  const screenWidth = window.innerWidth;
-  const screenHeight = window.innerHeight;
-  const x = Math.floor(Math.random() * (screenWidth - 100));
-  const y = Math.floor(Math.random() * (screenHeight - 100));
-  return { x, y };
-}
-
-// Create a function to create a new image element with a given URL and link
-function createImageElement(imageUrl, link) {
-  const img = document.createElement('img');
-  img.src = imageUrl;
-  img.style.position = 'absolute';
-  const { x, y } = getRandomPosition();
-  img.style.left = `${x}px`;
-  img.style.top = `${y}px`;
-  img.addEventListener('click', () => window.open(link));
-  document.body.appendChild(img);
-  return img;
-}
-
-// Create a function to animate an image down the screen and leave duplicates behind
-function animateImage(img) {
-  const intervalId = setInterval(() => {
-    const { top } = img.getBoundingClientRect();
-    if (top + img.height >= window.innerHeight) {
-      clearInterval(intervalId);
-      img.remove();
-      return;
-    }
-    const duplicate = img.cloneNode();
-    document.body.appendChild(duplicate);
-    duplicate.addEventListener('click', () => window.open(img.link));
-    duplicate.style.top = `${top + 10}px`;
-  }, 100);
-
-  return intervalId;
-}
-
-// Start animating images with a 1 second interval
-let currentImageIndex = 0;
-setInterval(() => {
-  const { imageUrl, link } = imageLinks[currentImageIndex % imageLinks.length];
-  const img = createImageElement(imageUrl, link);
-  animateImage(img);
-  currentImageIndex++;
-}, 1000);
