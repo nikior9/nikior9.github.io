@@ -3,7 +3,7 @@ const delay = 1000; // in milliseconds
 const speed = 100; // in pixels per second
 const duplicateTimeout = 2 * 60 * 1000; // in milliseconds
 
-document.body.style.cursor = *https://raw.githubusercontent.com/nikior9/nikior9.github.io/main/click.png*;
+//document.body.style.cursor = *https://raw.githubusercontent.com/nikior9/nikior9.github.io/main/click.png*;
 
 fetch('images_table.txt')
   .then(response => response.text())
