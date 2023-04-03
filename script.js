@@ -1,6 +1,6 @@
 const imgSize = 100; // in pixels
 const delay = 1000; // in milliseconds
-const speed = 30; // in pixels per second
+const speed = 100; // in pixels per second
 const duplicateTimeout = 1 * 60 * 1000; // in milliseconds
 
 fetch('images_table.txt')
