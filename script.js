@@ -1,6 +1,6 @@
-const imgSize = 100; // in pixels
+const imgSize = 150; // in pixels
     const delay = 1000; // in milliseconds
-    const speed = 200; // in pixels per second
+    const speed = 150; // in pixels per second
     const duplicateLifetime = 2 * 60 * 1000; // in milliseconds
 
     fetch('images.txt')
@@ -19,7 +19,7 @@ const imgSize = 100; // in pixels
           const img = document.createElement('img');
           img.src = imageUrl;
           img.style.position = 'absolute';
-          img.style.width = `100%`;
+         // img.style.width = `${imgSize}px`;
           img.style.height = `${imgSize}px`;
           img.style.left = `${Math.random() * 100}%`;
           img.style.top = `${Math.random() * 100}%`;
