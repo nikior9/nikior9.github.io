@@ -1,6 +1,6 @@
-const imgSize = 150; // in pixels
+const imgSize = 100; // in pixels
     const delay = 1000; // in milliseconds
-    const speed = 150; // in pixels per second
+    const speed = 200; // in pixels per second
     const duplicateLifetime = 2 * 60 * 1000; // in milliseconds
 
     fetch('images.txt')
@@ -19,7 +19,7 @@ const imgSize = 150; // in pixels
           const img = document.createElement('img');
           img.src = imageUrl;
           img.style.position = 'absolute';
-          img.style.width = `${imgSize}px`;
+          img.style.width = `100%`;
           img.style.height = `${imgSize}px`;
           img.style.left = `${Math.random() * 100}%`;
           img.style.top = `${Math.random() * 100}%`;
@@ -29,29 +29,35 @@ const imgSize = 150; // in pixels
             window.open(link);
           });
 
+          let lastUpdateTime = Date.now();
           let y = 0;
-          const intervalId = setInterval(() => {
-            y += speed * delay / 1000;
-            if (parseFloat(img.style.top) + y + imgSize >= window.innerHeight) {
+          const updatePosition = () => {
+            const currentTime = Date.now();
+            const timeElapsed = currentTime - lastUpdateTime;
+            const distance = speed * timeElapsed / 1000;
+            y += distance;
+            img.style.top = `${parseFloat(img.style.top) + distance}px`;
+            if (parseFloat(img.style.top) + imgSize >= window.innerHeight) {
               clearInterval(intervalId);
               return;
             }
-            const duplicate = document.createElement('img');
-            duplicate.src = imageUrl;
-            duplicate.style.position = 'absolute';
-            duplicate.style.width = `${imgSize}px`;
-            duplicate.style.height = `${imgSize}px`;
-            duplicate.style.left = img.style.left;
-            duplicate.style.top = `${parseFloat(img.style.top) + y}px`;
-            duplicate.addEventListener('click', () => {
-              window.open(link);
+            duplicates.forEach((value, key) => {
+              if (currentTime - value >= duplicateLifetime) {
+                key.remove();
+                duplicates.delete(key);
+              } else {
+                const distance = speed * (currentTime - value) / 1000;
+                key.style.top = `${parseFloat(key.style.top) + distance}px`;
+              }
             });
-            document.body.appendChild(duplicate);
-            duplicates.set(duplicate, Date.now());
-          }, delay);
+            lastUpdateTime = currentTime;
+          };
+
+          const intervalId = setInterval(updatePosition, 10);
 
           setTimeout(() => {
             img.remove();
+            clearInterval(intervalId);
             duplicates.forEach((value, key) => {
               if (Date.now() - value >= duplicateLifetime) {
                 key.remove();
