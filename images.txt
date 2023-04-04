@@ -11,3 +11,6 @@ https://mir-s3-cdn-cf.behance.net/project_modules/fs/b9bef1148617939.62ddca9faca
 /images/noodles.png::https://www.instagram.com/p/Cqdt1f7Ldsz/
 /images/dumplings.png::https://www.instagram.com/p/Cqdt1f7Ldsz/
 /images/dumplingsclose.png::https://www.instagram.com/p/Cqdt1f7Ldsz/
+https://mir-s3-cdn-cf.behance.net/project_modules/fs/c11b08145140447.6298ee6f3a86d.png::https://www.behance.net/gallery/145140447/Obesity-NHS-Poster
+https://mir-s3-cdn-cf.behance.net/project_modules/fs/543dd6148169989.62d16eb499783.png::https://www.behance.net/gallery/148169989/Cute-3D-Clay-Icons-Pack
+https://mir-s3-cdn-cf.behance.net/project_modules/fs/95098a148169989.62d0c6cd64675.gif::https://www.behance.net/gallery/148169989/Cute-3D-Clay-Icons-Pack
