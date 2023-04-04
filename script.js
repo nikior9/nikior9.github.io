@@ -34,10 +34,8 @@ const imgSize = 150; // in pixels
           const intervalId = setInterval(() => {
             const timestamp = performance.now();
             const elapsed = timestamp - lastTimestamp;
-            const distance = speed * timeElapsed / 1000;
-            y += distance;
-            img.style.top = `${parseFloat(img.style.top) + distance}px`;
-            if (parseFloat(img.style.top) + imgSize >= window.innerHeight) {
+            y += (speed * elapsed) / 1000;
+            if (parseFloat(img.style.top) + y + imgSize >= window.innerHeight) {
               clearInterval(intervalId);
               return;
             }
