@@ -8,6 +8,6 @@ https://mir-s3-cdn-cf.behance.net/project_modules/fs/b9bef1148617939.62ddca9faca
 /images/tea.png::https://www.instagram.com/p/CqQVP5Joo40/
 /images/teaclose.png::https://www.instagram.com/p/CqQVP5Joo40/
 /images/teaclose2.png::https://www.instagram.com/p/CqQVP5Joo40/
-/images/noodles::https://www.instagram.com/p/Cqdt1f7Ldsz/
-/images/dumplings::https://www.instagram.com/p/Cqdt1f7Ldsz/
-/images/dumplingsclose::https://www.instagram.com/p/Cqdt1f7Ldsz/
+/images/noodles.png::https://www.instagram.com/p/Cqdt1f7Ldsz/
+/images/dumplings.png::https://www.instagram.com/p/Cqdt1f7Ldsz/
+/images/dumplingsclose.png::https://www.instagram.com/p/Cqdt1f7Ldsz/
