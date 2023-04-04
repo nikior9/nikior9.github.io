@@ -7,7 +7,7 @@ https://mir-s3-cdn-cf.behance.net/project_modules/fs/7e9481148617939.62d87f94cd9
 https://mir-s3-cdn-cf.behance.net/project_modules/fs/b9bef1148617939.62ddca9faca6b.png::https://www.behance.net/gallery/148617939/Cheapshot-3D-illustrations
 /images/tea.png::https://www.instagram.com/p/CqQVP5Joo40/
 /images/teaclose.png::https://www.instagram.com/p/CqQVP5Joo40/
-/images/teaclose2.png::https://www.instagram.com/p/CqQVP5Joo40/
+/images/teacloseup2.png::https://www.instagram.com/p/CqQVP5Joo40/
 /images/noodles.png::https://www.instagram.com/p/Cqdt1f7Ldsz/
 /images/dumplings.png::https://www.instagram.com/p/Cqdt1f7Ldsz/
 /images/dumplingsclose.png::https://www.instagram.com/p/Cqdt1f7Ldsz/
