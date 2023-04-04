@@ -34,15 +34,17 @@ const imgSize = 150; // in pixels
           const intervalId = setInterval(() => {
             const timestamp = performance.now();
             const elapsed = timestamp - lastTimestamp;
-            y += (speed * elapsed) / 1000;
-            if (parseFloat(img.style.top) + y + imgSize >= window.innerHeight) {
+            const distance = speed * timeElapsed / 1000;
+            y += distance;
+            img.style.top = `${parseFloat(img.style.top) + distance}px`;
+            if (parseFloat(img.style.top) + imgSize >= window.innerHeight) {
               clearInterval(intervalId);
               return;
             }
             const duplicate = document.createElement('img');
             duplicate.src = imageUrl;
             duplicate.style.position = 'absolute';
-            duplicate.style.width = `${imgSize}px`;
+            //duplicate.style.width = `${imgSize}px`;
             duplicate.style.height = `${imgSize}px`;
             duplicate.style.left = img.style.left;
             duplicate.style.top = `${parseFloat(img.style.top) + y}px`;
